@@ -438,7 +438,26 @@ Close
 </div>
 
 
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
+
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDfevYooOVoMAZ_0Ad_C0HBB3PpycpN-HY",
+  authDomain: "dail-for-help-a293d.firebaseapp.com",
+  projectId: "dail-for-help-a293d",
+  storageBucket: "dail-for-help-a293d.firebasestorage.app",
+  messagingSenderId: "978623429914",
+  appId: "1:978623429914:web:fae876ed33e239e0a480a3",
+  measurementId: "G-3PW8K6MZVD"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+console.log("Firebase connected successfully");
+</script>
+  <script>
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -517,30 +536,7 @@ const workerModal=document.getElementById("workerModal");
 const workerList=document.getElementById("workerList");
 const workerTitle=document.getElementById("workerTitle");
 
-const workers=[
 
-{
-name:"Rajesh Kumar",
-icon:"👨‍🔧",
-rating:"⭐ 4.9",
-distance:"1.2 km"
-},
-
-{
-name:"Mohan Lal",
-icon:"👨‍🔧",
-rating:"⭐ 4.8",
-distance:"2.1 km"
-},
-
-{
-name:"Suresh Sharma",
-icon:"👷",
-rating:"⭐ 4.7",
-distance:"3.4 km"
-}
-
-];
 
 
 document.querySelectorAll(".service").forEach(function(service){
@@ -552,28 +548,7 @@ let selected=this.dataset.service;
 workerTitle.innerText=
 "🔧 Nearby "+selected;
 
-workerList.innerHTML="";
 
-workers.forEach(function(worker){
-
-let card=document.createElement("div");
-
-card.className="worker";
-
-card.innerHTML=
-'<div class="worker-top">'+
-'<div class="worker-photo">'+worker.icon+'</div>'+
-'<div>'+
-'<h3>'+worker.name+'</h3>'+
-'<div class="rating">'+worker.rating+'</div>'+
-'<div class="distance">📍 '+worker.distance+' दूर</div>'+
-'</div>'+
-'</div>'+
-'<button class="btn blue requestBtn">Request भेजें</button>';
-
-workerList.appendChild(card);
-
-});
 
 workerModal.style.display="flex";
 
