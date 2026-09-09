@@ -60,10 +60,11 @@ main{
 
 .hero h2{
   margin-bottom:8px;
+  font-size:25px;
 }
 
 .hero p{
-  font-size:13px;
+  font-size:14px;
   margin-bottom:15px;
 }
 
@@ -84,7 +85,14 @@ main{
   padding:14px;
   border-radius:13px;
   margin-bottom:18px;
-  color:#687991;
+}
+
+.search input{
+  width:100%;
+  border:0;
+  outline:0;
+  font-size:16px;
+  background:transparent;
 }
 
 h3{
@@ -131,6 +139,7 @@ h3{
   padding:15px;
   margin-top:15px;
   border:1px solid #e0e7ef;
+  line-height:1.5;
 }
 
 .bottom{
@@ -164,6 +173,66 @@ h3{
   color:#0875df;
   font-weight:bold;
 }
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:10;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.modal-box{
+  width:100%;
+  max-width:430px;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:22px;
+  animation:up .25s ease;
+}
+
+@keyframes up{
+  from{transform:translateY(100%)}
+  to{transform:translateY(0)}
+}
+
+.modal h2{
+  margin-bottom:10px;
+}
+
+.modal p{
+  margin-bottom:15px;
+  color:#52627a;
+}
+
+.btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  margin-top:8px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.primary{
+  background:#0875df;
+  color:white;
+}
+
+.danger{
+  background:#ef3340;
+  color:white;
+}
+
+.secondary{
+  background:#e8eef5;
+  color:#173456;
+}
 </style>
 </head>
 
@@ -176,8 +245,8 @@ h3{
     Dial For <span>Help</span>
   </div>
 
-  <div class="location">
-    📍 Singoli, Madhya Pradesh
+  <div class="location" id="locationText">
+    📍 Location permission नहीं दी गई
   </div>
 </header>
 
@@ -187,65 +256,69 @@ h3{
 
   <h2>हर काम के लिए एक ही App</h2>
 
-  <p>
-    जब भी मदद चाहिए, बस Dial For Help.
-  </p>
+  <p>जब भी मदद चाहिए, बस Dial For Help.</p>
 
-  <button class="sos" onclick="emergency()">
+  <button class="sos" onclick="startSOS()">
     🆘 DIAL FOR HELP
   </button>
 
 </div>
 
 <div class="search">
-  🔍 आपको किस चीज़ की जरूरत है?
+  🔍
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="आपको किस चीज़ की जरूरत है?"
+    oninput="searchService()"
+  >
 </div>
 
 <h3>हमारी सेवाएँ</h3>
 
-<div class="services">
+<div class="services" id="services">
 
-  <div class="service" onclick="service('Plumber')">
+  <div class="service" data-name="plumber" onclick="selectService('Plumber')">
     <span class="icon">🔧</span>
     Plumber
   </div>
 
-  <div class="service" onclick="service('Electrician')">
+  <div class="service" data-name="electrician" onclick="selectService('Electrician')">
     <span class="icon">⚡</span>
     Electrician
   </div>
 
-  <div class="service" onclick="service('Mechanic')">
+  <div class="service" data-name="mechanic" onclick="selectService('Mechanic')">
     <span class="icon">🚗</span>
     Mechanic
   </div>
 
-  <div class="service" onclick="service('Mistri')">
+  <div class="service" data-name="mistri" onclick="selectService('Mistri')">
     <span class="icon">🧱</span>
     Mistri
   </div>
 
-  <div class="service" onclick="service('Helper')">
+  <div class="service" data-name="helper" onclick="selectService('Helper')">
     <span class="icon">👷</span>
     Helper
   </div>
 
-  <div class="service" onclick="service('Carpenter')">
+  <div class="service" data-name="carpenter" onclick="selectService('Carpenter')">
     <span class="icon">🪚</span>
     Carpenter
   </div>
 
-  <div class="service" onclick="service('AC / Fridge')">
+  <div class="service" data-name="ac fridge" onclick="selectService('AC / Fridge')">
     <span class="icon">❄️</span>
     AC / Fridge
   </div>
 
-  <div class="service" onclick="service('Driver')">
+  <div class="service" data-name="driver" onclick="selectService('Driver')">
     <span class="icon">🚚</span>
     Driver
   </div>
 
-  <div class="service" onclick="service('Cleaning')">
+  <div class="service" data-name="cleaning" onclick="selectService('Cleaning')">
     <span class="icon">🧹</span>
     Cleaning
   </div>
@@ -259,13 +332,10 @@ h3{
 <div class="info">
   <b>👥 1000+ Verified Helpers</b>
   <br><br>
-
   ⚡ Fast & Reliable Service
   <br><br>
-
   🆘 Emergency Support
   <br><br>
-
   🛡️ Safe & Secure
 </div>
 
@@ -273,7 +343,7 @@ h3{
 
 <div class="bottom">
 
-<button class="nav active">
+<button class="nav active" onclick="home()">
   <span>⌂</span>
   Home
 </button>
@@ -297,62 +367,82 @@ h3{
 
 </div>
 
+
+<!-- SOS MODAL -->
+
+<div class="modal" id="sosModal">
+
+<div class="modal-box">
+
+<h2>🆘 Emergency Help</h2>
+
+<p id="sosMessage">
+Emergency सहायता के लिए आपकी location की जरूरत है।
+</p>
+
+<button class="btn danger" onclick="getLocation()">
+  📍 Share My Location
+</button>
+
+<button class="btn secondary" onclick="closeModal()">
+  Cancel
+</button>
+
+</div>
+</div>
+
+
 <script>
 
-function emergency(){
+let userLocation = null;
 
-  alert(
-    "🆘 Emergency Help\n\n" +
-    "Emergency service selected.\n\n" +
-    "अगले version में यहाँ location permission, nearby helpers और emergency response जोड़ा जाएगा।"
-  );
 
-}
+/* SOS */
 
-function service(name){
+function startSOS(){
 
-  alert(
-    "🔧 " + name + "\n\n" +
-    "इस service के nearby workers जल्द दिखाए जाएंगे।"
-  );
+  document.getElementById("sosModal").style.display="flex";
 
 }
 
-function moreServices(){
 
-  alert(
-    "More Services\n\n" +
-    "Driver\n" +
-    "Painter\n" +
-    "AC Repair\n" +
-    "Fridge Repair\n" +
-    "RO Repair\n" +
-    "Computer Repair\n" +
-    "Mobile Repair\n" +
-    "Cleaning"
-  );
+/* LOCATION */
 
-}
+function getLocation(){
 
-function bookings(){
+  if(!navigator.geolocation){
 
-  alert("📋 आपकी Bookings यहाँ दिखाई देंगी।");
+    document.getElementById("sosMessage").innerText =
+      "इस browser में location सुविधा उपलब्ध नहीं है।";
 
-}
+    return;
+  }
 
-function chat(){
+  document.getElementById("sosMessage").innerText =
+    "📍 आपकी location प्राप्त की जा रही है...";
 
-  alert("💬 Customer और Worker की Chat यहाँ होगी।");
+  navigator.geolocation.getCurrentPosition(
 
-}
+    function(position){
 
-function profile(){
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
 
-  alert("👤 आपका Profile यहाँ खुलेगा।");
+      userLocation = {
+        latitude:lat,
+        longitude:lon
+      };
 
-}
+      document.getElementById("locationText").innerText =
+        "📍 Location उपलब्ध है";
 
-</script>
+      document.getElementById("sosMessage").innerText =
+        "✅ Location मिल गई!\n\n" +
+        "Latitude: " + lat.toFixed(5) +
+        "\nLongitude: " + lon.toFixed(5);
 
-</body>
-    </html>
+      setTimeout(function(){
+
+        alert(
+          "🆘 Emergency Request तैयार है!\n\n" +
+         
