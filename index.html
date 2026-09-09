@@ -439,24 +439,31 @@ Close
 
 
 <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyDfevYooOVoMAZ_0Ad_C0HBB3PpycpN-HY",
+  apiKey: "YOUR_API_KEY",
   authDomain: "dail-for-help-a293d.firebaseapp.com",
   projectId: "dail-for-help-a293d",
   storageBucket: "dail-for-help-a293d.firebasestorage.app",
   messagingSenderId: "978623429914",
-  appId: "1:978623429914:web:fae876ed33e239e0a480a3",
-  measurementId: "G-3PW8K6MZVD"
+  appId: "1:978623429914:web:fae876ed33e239e0a480a3"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-console.log("Firebase connected successfully");
+const db = firebase.firestore();
+const auth = firebase.auth();
+
+console.log("Firebase Connected Successfully");
 </script>
+
   <script>
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -660,5 +667,374 @@ alert(
 
 </script>
 
+  <!-- ================= WORKER REGISTRATION ================= -->
+
+<div id="workerRegisterModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:9999;
+align-items:center;
+justify-content:center;
+padding:20px;
+">
+
+  <div style="
+  background:white;
+  width:100%;
+  max-width:430px;
+  border-radius:22px;
+  padding:24px;
+  max-height:90vh;
+  overflow:auto;
+  ">
+
+    <h2 style="color:#07356f;margin-top:0;">
+      👷 Worker Registration
+    </h2>
+
+    <p>अपनी जानकारी भरकर Worker के रूप में Register करें।</p>
+
+    <input id="workerName"
+      type="text"
+      placeholder="पूरा नाम"
+      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
+
+    <input id="workerPhone"
+      type="tel"
+      placeholder="मोबाइल नंबर"
+      maxlength="10"
+      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
+
+    <select id="workerService"
+      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
+
+      <option value="">अपनी Service चुनें</option>
+      <option value="Plumber">🔧 Plumber</option>
+      <option value="Electrician">⚡ Electrician</option>
+      <option value="Mechanic">🚗 Mechanic</option>
+      <option value="Mistri">🧱 Mistri</option>
+      <option value="Helper">👷 Helper</option>
+      <option value="Carpenter">🪚 Carpenter</option>
+      <option value="AC / Fridge">❄️ AC / Fridge</option>
+      <option value="Driver">🚚 Driver</option>
+      <option value="Cleaning">🧹 Cleaning</option>
+
+    </select>
+
+    <input id="workerArea"
+      type="text"
+      placeholder="आप किस Area/City में काम करते हैं?"
+      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
+
+    <input id="workerExperience"
+      type="number"
+      placeholder="काम का अनुभव (वर्ष)"
+      min="0"
+      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
+
+    <div id="workerRecaptcha" style="margin:12px 0;"></div>
+
+    <button id="workerSendOtp"
+      style="
+      width:100%;
+      padding:15px;
+      border:0;
+      border-radius:12px;
+      background:#07356f;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      ">
+      📱 Send OTP
+    </button>
+
+    <div id="workerOtpBox" style="display:none;margin-top:12px;">
+
+      <input id="workerOtp"
+        type="number"
+        placeholder="6 digit OTP"
+        maxlength="6"
+        style="width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;">
+
+      <button id="workerVerifyOtp"
+        style="
+        width:100%;
+        padding:15px;
+        margin-top:10px;
+        border:0;
+        border-radius:12px;
+        background:#16a34a;
+        color:white;
+        font-size:17px;
+        font-weight:bold;
+        ">
+        ✅ Verify & Register
+      </button>
+
+    </div>
+
+    <p id="workerRegisterStatus"
+       style="font-weight:bold;text-align:center;"></p>
+
+    <button onclick="document.getElementById('workerRegisterModal').style.display='none'"
+      style="
+      width:100%;
+      padding:13px;
+      border:0;
+      border-radius:12px;
+      background:#e5edf7;
+      color:#07356f;
+      font-size:16px;
+      ">
+      Close
+    </button>
+
+  </div>
+</div>
+
+
+<!-- Worker Registration Button -->
+
+<button id="openWorkerRegister"
+  style="
+  display:block;
+  width:calc(100% - 40px);
+  max-width:430px;
+  margin:20px auto;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  background:#07356f;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  ">
+  👷 Worker बनें / Register करें
+</button>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  const openBtn = document.getElementById("openWorkerRegister");
+  const modal = document.getElementById("workerRegisterModal");
+
+  const sendOtpBtn = document.getElementById("workerSendOtp");
+  const verifyOtpBtn = document.getElementById("workerVerifyOtp");
+
+  const statusBox = document.getElementById("workerRegisterStatus");
+
+  let confirmationResult = null;
+  let recaptchaVerifier = null;
+
+
+  /* OPEN REGISTRATION */
+
+  openBtn.onclick = function(){
+
+    modal.style.display = "flex";
+
+    if(!recaptchaVerifier){
+
+      recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+        "workerRecaptcha",
+        {
+          size:"normal"
+        }
+      );
+
+      recaptchaVerifier.render();
+    }
+
+  };
+
+
+  /* SEND OTP */
+
+  sendOtpBtn.onclick = async function(){
+
+    const name =
+      document.getElementById("workerName").value.trim();
+
+    const phone =
+      document.getElementById("workerPhone").value.trim();
+
+    const service =
+      document.getElementById("workerService").value;
+
+    const area =
+      document.getElementById("workerArea").value.trim();
+
+    const experience =
+      document.getElementById("workerExperience").value.trim();
+
+
+    if(!name || !phone || !service || !area){
+
+      statusBox.innerText =
+        "⚠️ सभी जरूरी जानकारी भरें।";
+
+      return;
+    }
+
+
+    if(!/^[0-9]{10}$/.test(phone)){
+
+      statusBox.innerText =
+        "⚠️ सही 10 digit मोबाइल नंबर डालें।";
+
+      return;
+    }
+
+
+    try{
+
+      statusBox.innerText =
+        "📱 OTP भेजा जा रहा है...";
+
+
+      confirmationResult =
+        await firebase.auth().signInWithPhoneNumber(
+          "+91" + phone,
+          recaptchaVerifier
+        );
+
+
+      document.getElementById("workerOtpBox").style.display =
+        "block";
+
+
+      statusBox.innerText =
+        "✅ OTP आपके मोबाइल पर भेज दिया गया।";
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      statusBox.innerText =
+        "❌ OTP भेजने में समस्या हुई।";
+
+      alert(error.message);
+
+    }
+
+  };
+
+
+  /* VERIFY OTP + SAVE WORKER */
+
+  verifyOtpBtn.onclick = async function(){
+
+    const otp =
+      document.getElementById("workerOtp").value.trim();
+
+    if(!confirmationResult){
+
+      statusBox.innerText =
+        "⚠️ पहले Send OTP दबाएँ।";
+
+      return;
+    }
+
+
+    if(!/^[0-9]{6}$/.test(otp)){
+
+      statusBox.innerText =
+        "⚠️ 6 digit OTP डालें।";
+
+      return;
+    }
+
+
+    try{
+
+      statusBox.innerText =
+        "🔐 OTP verify हो रहा है...";
+
+
+      const result =
+        await confirmationResult.confirm(otp);
+
+
+      const user = result.user;
+
+
+      const workerData = {
+
+        uid: user.uid,
+
+        name:
+          document.getElementById("workerName").value.trim(),
+
+        phone:
+          user.phoneNumber,
+
+        service:
+          document.getElementById("workerService").value,
+
+        area:
+          document.getElementById("workerArea").value.trim(),
+
+        experience:
+          Number(
+            document.getElementById("workerExperience").value || 0
+          ),
+
+        online: false,
+
+        verified: false,
+
+        approved: false,
+
+        status: "pending",
+
+        createdAt:
+          firebase.firestore.FieldValue.serverTimestamp()
+
+      };
+
+
+      await firebase.firestore()
+        .collection("workers")
+        .doc(user.uid)
+        .set(workerData);
+
+
+      statusBox.innerText =
+        "✅ Registration सफल!\nAdmin verification के बाद आप available होंगे।";
+
+
+      alert(
+        "✅ Worker Registration सफल!\n\n" +
+        "आपकी profile Firebase में save हो गई है।\n" +
+        "Admin approval के बाद ही आप customers को दिखाई देंगे।"
+      );
+
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      statusBox.innerText =
+        "❌ OTP verification में समस्या हुई।";
+
+      alert(error.message);
+
+    }
+
+  };
+
+});
+
+</script>
+
+<!-- ================= END WORKER REGISTRATION ================= -->
 </body>
 </html>
