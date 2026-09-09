@@ -2,7 +2,7 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dial For Help</title>
 
 <style>
@@ -11,37 +11,36 @@
 body{
 font-family:Arial,sans-serif;
 background:#eef3f8;
-color:#12233f;
+color:#172b4d
 }
 
 .app{
 max-width:430px;
 min-height:100vh;
 margin:auto;
-background:#f8fbff;
+background:#f8fbff
 }
 
 header{
 background:#07356f;
 color:white;
-padding:18px;
+padding:18px
 }
 
 .logo{
 font-size:26px;
-font-weight:bold;
+font-weight:bold
 }
 
 .logo span{color:#ffd21c}
 
 .location{
 margin-top:8px;
-font-size:13px;
+font-size:13px
 }
 
 main{
-padding:15px;
-padding-bottom:90px;
+padding:15px 15px 90px
 }
 
 .hero{
@@ -49,17 +48,20 @@ background:linear-gradient(135deg,#07356f,#0875df);
 color:white;
 padding:20px;
 border-radius:20px;
-margin-bottom:15px;
+margin-bottom:15px
 }
 
 .hero h2{
-font-size:25px;
-margin-bottom:8px;
+font-size:24px;
+margin-bottom:8px
 }
 
 .hero p{
-font-size:14px;
-margin-bottom:15px;
+margin-bottom:15px
+}
+
+button{
+cursor:pointer
 }
 
 .sos{
@@ -70,7 +72,7 @@ color:white;
 padding:17px;
 border-radius:15px;
 font-size:18px;
-font-weight:bold;
+font-weight:bold
 }
 
 .search{
@@ -78,26 +80,25 @@ background:white;
 border:1px solid #dce5ef;
 padding:14px;
 border-radius:13px;
-margin-bottom:18px;
+margin-bottom:18px
 }
 
 .search input{
 width:100%;
 border:0;
 outline:0;
-font-size:16px;
-background:transparent;
+font-size:16px
 }
 
 h3{
-margin-bottom:12px;
 font-size:22px;
+margin-bottom:12px
 }
 
 .services{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px;
+gap:10px
 }
 
 .service{
@@ -106,28 +107,26 @@ border:1px solid #e0e7ef;
 border-radius:15px;
 padding:14px 5px;
 text-align:center;
-font-size:12px;
 font-weight:bold;
-box-shadow:0 2px 7px #dfe6ee;
-cursor:pointer;
+box-shadow:0 2px 7px #dfe6ee
 }
 
 .icon{
 display:block;
 font-size:28px;
-margin-bottom:6px;
+margin-bottom:7px
 }
 
 .more{
 width:100%;
-margin-top:10px;
+margin-top:12px;
 padding:13px;
 border:0;
 border-radius:13px;
 background:#e5f0ff;
 color:#075bb1;
 font-weight:bold;
-font-size:15px;
+font-size:15px
 }
 
 .info{
@@ -135,8 +134,8 @@ background:white;
 border-radius:16px;
 padding:15px;
 margin-top:15px;
-border:1px solid #e0e7ef;
-line-height:1.5;
+line-height:1.6;
+border:1px solid #e0e7ef
 }
 
 .bottom{
@@ -144,34 +143,34 @@ position:fixed;
 bottom:0;
 left:50%;
 transform:translateX(-50%);
-max-width:430px;
 width:100%;
+max-width:430px;
 background:white;
 border-top:1px solid #ddd;
 display:flex;
 justify-content:space-around;
 padding:9px;
-z-index:5;
+z-index:5
 }
 
 .nav{
 border:0;
-background:none;
+background:white;
 color:#687991;
-font-size:11px;
-cursor:pointer;
+font-size:11px
 }
 
 .nav span{
 display:block;
 font-size:21px;
-margin-bottom:3px;
+margin-bottom:3px
 }
 
-.nav.active{
-color:#0875df;
-font-weight:bold;
+.active{
+color:#0875df
 }
+
+/* MODAL */
 
 .modal{
 display:none;
@@ -180,25 +179,27 @@ inset:0;
 background:rgba(0,0,0,.65);
 z-index:20;
 align-items:flex-end;
-justify-content:center;
+justify-content:center
 }
 
-.modal-box{
+.box{
 width:100%;
 max-width:430px;
 background:white;
 border-radius:25px 25px 0 0;
 padding:22px;
+max-height:85vh;
+overflow:auto
 }
 
-.modal-box h2{
-margin-bottom:10px;
+.box h2{
+margin-bottom:10px
 }
 
-.modal-box p{
-white-space:pre-line;
-margin-bottom:15px;
+.box p{
 color:#52627a;
+margin-bottom:15px;
+white-space:pre-line
 }
 
 .btn{
@@ -208,26 +209,65 @@ border:0;
 border-radius:12px;
 margin-top:8px;
 font-size:16px;
-font-weight:bold;
-cursor:pointer;
+font-weight:bold
 }
 
-.primary{background:#0875df;color:white}
-.danger{background:#ef3340;color:white}
-.secondary{background:#e8eef5;color:#173456}
+.red{
+background:#ef3340;
+color:white
+}
 
-.toast{
-position:fixed;
-top:20px;
-left:50%;
-transform:translateX(-50%);
-background:#12233f;
-color:white;
-padding:12px 18px;
-border-radius:12px;
-display:none;
-z-index:50;
-font-size:14px;
+.blue{
+background:#0875df;
+color:white
+}
+
+.gray{
+background:#e8eef5;
+color:#173456
+}
+
+/* WORKER CARD */
+
+.worker{
+background:#f5f9ff;
+border:1px solid #dce7f2;
+border-radius:15px;
+padding:14px;
+margin:10px 0
+}
+
+.worker-top{
+display:flex;
+align-items:center;
+gap:12px
+}
+
+.worker-photo{
+width:55px;
+height:55px;
+border-radius:50%;
+background:#dcecff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px
+}
+
+.worker h3{
+font-size:17px;
+margin:0 0 4px
+}
+
+.rating{
+color:#f39c12;
+font-size:14px
+}
+
+.distance{
+font-size:13px;
+color:#687991;
+margin-top:5px
 }
 </style>
 </head>
@@ -239,93 +279,89 @@ font-size:14px;
 <header>
 <div class="logo">Dial For <span>Help</span></div>
 <div class="location" id="locationText">
-📍 Location permission नहीं दी गई
+📍 Location उपलब्ध नहीं है
 </div>
 </header>
 
 <main>
 
 <div class="hero">
-
 <h2>हर काम के लिए एक ही App</h2>
-
 <p>जब भी मदद चाहिए, बस Dial For Help.</p>
 
-<button class="sos" id="sosButton">
+<button class="sos" id="sosBtn">
 🆘 DIAL FOR HELP
 </button>
-
 </div>
 
 <div class="search">
 🔍
-<input id="searchInput"
-type="text"
+<input id="search" type="text"
 placeholder="आपको किस चीज़ की जरूरत है?">
 </div>
 
 <h3>हमारी सेवाएँ</h3>
 
-<div class="services" id="services">
+<div class="services">
 
-<div class="service" data-name="plumber">
+<div class="service" data-name="plumber" data-service="Plumber">
 <span class="icon">🔧</span>
 Plumber
 </div>
 
-<div class="service" data-name="electrician">
+<div class="service" data-name="electrician" data-service="Electrician">
 <span class="icon">⚡</span>
 Electrician
 </div>
 
-<div class="service" data-name="mechanic">
+<div class="service" data-name="mechanic" data-service="Mechanic">
 <span class="icon">🚗</span>
 Mechanic
 </div>
 
-<div class="service" data-name="mistri">
+<div class="service" data-name="mistri" data-service="Mistri">
 <span class="icon">🧱</span>
 Mistri
 </div>
 
-<div class="service" data-name="helper">
+<div class="service" data-name="helper" data-service="Helper">
 <span class="icon">👷</span>
 Helper
 </div>
 
-<div class="service" data-name="carpenter">
+<div class="service" data-name="carpenter" data-service="Carpenter">
 <span class="icon">🪚</span>
 Carpenter
 </div>
 
-<div class="service" data-name="ac fridge">
+<div class="service" data-name="ac" data-service="AC / Fridge">
 <span class="icon">❄️</span>
 AC / Fridge
 </div>
 
-<div class="service" data-name="driver">
+<div class="service" data-name="driver" data-service="Driver">
 <span class="icon">🚚</span>
 Driver
 </div>
 
-<div class="service" data-name="cleaning">
+<div class="service" data-name="cleaning" data-service="Cleaning">
 <span class="icon">🧹</span>
 Cleaning
 </div>
 
 </div>
 
-<button class="more" id="moreButton">
+<button class="more" id="moreBtn">
 ＋ More Services
 </button>
 
 <div class="info">
 <b>👥 1000+ Verified Helpers</b>
-<br><br>
+<br>
 ⚡ Fast & Reliable Service
-<br><br>
+<br>
 🆘 Emergency Support
-<br><br>
+<br>
 🛡️ Safe & Secure
 </div>
 
@@ -333,24 +369,20 @@ Cleaning
 
 <div class="bottom">
 
-<button class="nav active" id="homeButton">
-<span>⌂</span>
-Home
+<button class="nav active" id="homeBtn">
+<span>⌂</span>Home
 </button>
 
-<button class="nav" id="bookingButton">
-<span>▣</span>
-Bookings
+<button class="nav" id="bookingBtn">
+<span>▣</span>Bookings
 </button>
 
-<button class="nav" id="chatButton">
-<span>💬</span>
-Chat
+<button class="nav" id="chatBtn">
+<span>💬</span>Chat
 </button>
 
-<button class="nav" id="profileButton">
-<span>◉</span>
-Profile
+<button class="nav" id="profileBtn">
+<span>◉</span>Profile
 </button>
 
 </div>
@@ -358,123 +390,113 @@ Profile
 </div>
 
 
-<!-- SOS -->
+<!-- SOS MODAL -->
 
 <div class="modal" id="sosModal">
 
-<div class="modal-box">
+<div class="box">
 
 <h2>🆘 Emergency Help</h2>
 
-<p id="sosMessage">
-Emergency सहायता के लिए आपकी location की जरूरत है।
+<p id="sosText">
+Emergency सहायता के लिए आपकी location चाहिए।
 </p>
 
-<button class="btn danger" id="locationButton">
+<button class="btn red" id="locationBtn">
 📍 Share My Location
 </button>
 
-<button class="btn secondary" id="closeButton">
+<button class="btn gray" id="closeSos">
 Cancel
 </button>
 
 </div>
-
 </div>
 
 
-<div class="toast" id="toast"></div>
+<!-- WORKERS MODAL -->
+
+<div class="modal" id="workerModal">
+
+<div class="box">
+
+<h2 id="workerTitle">
+🔧 Nearby Workers
+</h2>
+
+<p>
+आपके आसपास उपलब्ध workers:
+</p>
+
+<div id="workerList"></div>
+
+<button class="btn gray" id="closeWorkers">
+Close
+</button>
+
+</div>
+</div>
 
 
 <script>
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function(){
 
-const sosButton=document.getElementById("sosButton");
-const moreButton=document.getElementById("moreButton");
-const searchInput=document.getElementById("searchInput");
+/* SOS */
 
+const sosBtn=document.getElementById("sosBtn");
 const sosModal=document.getElementById("sosModal");
-const locationButton=document.getElementById("locationButton");
-const closeButton=document.getElementById("closeButton");
-
-const sosMessage=document.getElementById("sosMessage");
+const closeSos=document.getElementById("closeSos");
+const locationBtn=document.getElementById("locationBtn");
+const sosText=document.getElementById("sosText");
 const locationText=document.getElementById("locationText");
-const toast=document.getElementById("toast");
 
-
-// Toast
-
-function showToast(message){
-
-toast.innerText=message;
-toast.style.display="block";
-
-setTimeout(function(){
-toast.style.display="none";
-},2000);
-
-}
-
-
-// SOS
-
-sosButton.addEventListener("click",function(){
-
+sosBtn.onclick=function(){
 sosModal.style.display="flex";
+};
 
-});
-
-
-// Close
-
-closeButton.addEventListener("click",function(){
-
+closeSos.onclick=function(){
 sosModal.style.display="none";
+};
 
-});
 
+/* LOCATION */
 
-// Location
-
-locationButton.addEventListener("click",function(){
+locationBtn.onclick=function(){
 
 if(!navigator.geolocation){
 
-sosMessage.innerText=
-"इस browser में location सुविधा उपलब्ध नहीं है।";
+sosText.innerText=
+"❌ इस browser में location उपलब्ध नहीं है।";
 
 return;
-
 }
 
-sosMessage.innerText=
-"📍 आपकी location प्राप्त की जा रही है...";
+sosText.innerText=
+"📍 Location प्राप्त की जा रही है...";
 
 navigator.geolocation.getCurrentPosition(
 
 function(position){
 
-const lat=position.coords.latitude;
-const lon=position.coords.longitude;
+let lat=position.coords.latitude;
+let lon=position.coords.longitude;
 
-locationText.innerText=
-"📍 Location उपलब्ध है";
+locationText.innerText="📍 Location उपलब्ध है";
 
-sosMessage.innerText=
+sosText.innerText=
 "✅ Location मिल गई!\n\n"+
 "Latitude: "+lat.toFixed(5)+
-"\nLongitude: "+lon.toFixed(5);
-
-showToast("Location सफलतापूर्वक मिल गई");
+"\nLongitude: "+lon.toFixed(5)+
+"\n\nअब emergency request तैयार है।";
 
 },
 
 function(){
 
-sosMessage.innerText=
+sosText.innerText=
 "❌ Location permission नहीं मिली।\n\n"+
-"Browser में Location को Allow करें।";
+"Browser में Location Allow करें।";
 
 },
 
@@ -486,58 +508,99 @@ maximumAge:0
 
 );
 
-});
+};
 
 
-// Services
+/* WORKERS */
 
-document.querySelectorAll(".service").forEach(function(service){
+const workerModal=document.getElementById("workerModal");
+const workerList=document.getElementById("workerList");
+const workerTitle=document.getElementById("workerTitle");
 
-service.addEventListener("click",function(){
+const workers=[
 
-const name=this.innerText.trim();
+{
+name:"Rajesh Kumar",
+icon:"👨‍🔧",
+rating:"⭐ 4.9",
+distance:"1.2 km"
+},
 
-showToast("🔧 "+name+" चुना गया");
+{
+name:"Mohan Lal",
+icon:"👨‍🔧",
+rating:"⭐ 4.8",
+distance:"2.1 km"
+},
 
-setTimeout(function(){
-
-alert(
-"🔧 "+name+
-"\n\nआपकी service request तैयार है।\n\n"+
-"अगले चरण में nearby workers दिखाई देंगे।"
-);
-
-},300);
-
-});
-
-});
-
-
-// Search
-
-searchInput.addEventListener("input",function(){
-
-const text=this.value.toLowerCase();
-
-document.querySelectorAll(".service").forEach(function(service){
-
-const name=service.dataset.name.toLowerCase();
-
-if(name.includes(text)){
-service.style.display="";
-}else{
-service.style.display="none";
+{
+name:"Suresh Sharma",
+icon:"👷",
+rating:"⭐ 4.7",
+distance:"3.4 km"
 }
 
-});
+];
+
+
+document.querySelectorAll(".service").forEach(function(service){
+
+service.onclick=function(){
+
+let selected=this.dataset.service;
+
+workerTitle.innerText=
+"🔧 Nearby "+selected;
+
+workerList.innerHTML="";
+
+workers.forEach(function(worker){
+
+let card=document.createElement("div");
+
+card.className="worker";
+
+card.innerHTML=
+'<div class="worker-top">'+
+'<div class="worker-photo">'+worker.icon+'</div>'+
+'<div>'+
+'<h3>'+worker.name+'</h3>'+
+'<div class="rating">'+worker.rating+'</div>'+
+'<div class="distance">📍 '+worker.distance+' दूर</div>'+
+'</div>'+
+'</div>'+
+'<button class="btn blue requestBtn">Request भेजें</button>';
+
+workerList.appendChild(card);
 
 });
 
+workerModal.style.display="flex";
 
-// More Services
 
-moreButton.addEventListener("click",function(){
+/* REQUEST */
+
+document.querySelectorAll(".requestBtn").forEach(function(btn){
+
+btn.onclick=function(){
+
+alert(
+"✅ Service Request भेज दी गई!\n\n"+
+"Worker आपकी request स्वीकार करेगा।"
+);
+
+};
+
+});
+
+};
+
+});
+
+
+/* MORE SERVICES */
+
+document.getElementById("moreBtn").onclick=function(){
 
 alert(
 "＋ More Services\n\n"+
@@ -551,66 +614,73 @@ alert(
 "🏠 Home Cleaning"
 );
 
+};
+
+
+/* SEARCH */
+
+document.getElementById("search").oninput=function(){
+
+let text=this.value.toLowerCase();
+
+document.querySelectorAll(".service").forEach(function(service){
+
+let name=service.dataset.name;
+
+service.style.display=
+name.includes(text) ? "block" : "none";
+
 });
 
+};
 
-// Home
 
-document.getElementById("homeButton").addEventListener("click",function(){
+/* CLOSE WORKERS */
+
+document.getElementById("closeWorkers").onclick=function(){
+
+workerModal.style.display="none";
+
+};
+
+
+/* NAVIGATION */
+
+document.getElementById("homeBtn").onclick=function(){
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
 
-});
+};
 
-
-// Bookings
-
-document.getElementById("bookingButton").addEventListener("click",function(){
+document.getElementById("bookingBtn").onclick=function(){
 
 alert(
 "📋 My Bookings\n\n"+
 "अभी कोई booking नहीं है।"
 );
 
-});
+};
 
-
-// Chat
-
-document.getElementById("chatButton").addEventListener("click",function(){
+document.getElementById("chatBtn").onclick=function(){
 
 alert(
 "💬 Chat\n\n"+
 "Worker से chat यहाँ होगी।"
 );
 
-});
+};
 
-
-// Profile
-
-document.getElementById("profileButton").addEventListener("click",function(){
+document.getElementById("profileBtn").onclick=function(){
 
 alert(
 "👤 Profile\n\n"+
-"Login और Profile system अगले चरण में जोड़ा जाएगा।"
+"अगले चरण में Login और Profile system जोड़ेंगे।"
 );
 
-});
-
-
-// Modal outside click
-
-sosModal.addEventListener("click",function(event){
-
-if(event.target===sosModal){
-sosModal.style.display="none";
-}
-
-});
+};
 
 });
 
