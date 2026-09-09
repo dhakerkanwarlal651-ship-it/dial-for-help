@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dial For Help</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#eef3f8;
+  color:#12233f;
+}
+
+.app{
+  max-width:430px;
+  min-height:100vh;
+  margin:auto;
+  background:#f8fbff;
+}
+
+header{
+  background:#07356f;
+  color:white;
+  padding:18px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#ffd21c;
+}
+
+.location{
+  margin-top:8px;
+  font-size:13px;
+}
+
+main{
+  padding:15px;
+  padding-bottom:90px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#07356f,#0875df);
+  color:white;
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:15px;
+}
+
+.hero h2{
+  margin-bottom:8px;
+}
+
+.hero p{
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.sos{
+  width:100%;
+  border:0;
+  background:#ef3340;
+  color:white;
+  padding:17px;
+  border-radius:15px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.search{
+  background:white;
+  border:1px solid #dce5ef;
+  padding:14px;
+  border-radius:13px;
+  margin-bottom:18px;
+  color:#687991;
+}
+
+h3{
+  margin-bottom:12px;
+}
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.service{
+  background:white;
+  border:1px solid #e0e7ef;
+  border-radius:15px;
+  padding:14px 5px;
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
+  box-shadow:0 2px 7px #dfe6ee;
+}
+
+.icon{
+  display:block;
+  font-size:28px;
+  margin-bottom:6px;
+}
+
+.more{
+  width:100%;
+  margin-top:10px;
+  padding:13px;
+  border:0;
+  border-radius:13px;
+  background:#e5f0ff;
+  color:#075bb1;
+  font-weight:bold;
+}
+
+.info{
+  background:white;
+  border-radius:16px;
+  padding:15px;
+  margin-top:15px;
+  border:1px solid #e0e7ef;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:430px;
+  width:100%;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  padding:9px;
+}
+
+.nav{
+  border:0;
+  background:none;
+  color:#687991;
+  font-size:11px;
+}
+
+.nav span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:#0875df;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">
+    Dial For <span>Help</span>
+  </div>
+
+  <div class="location">
+    📍 Singoli, Madhya Pradesh
+  </div>
+</header>
+
+<main>
+
+<div class="hero">
+
+  <h2>हर काम के लिए एक ही App</h2>
+
+  <p>
+    जब भी मदद चाहिए, बस Dial For Help.
+  </p>
+
+  <button class="sos" onclick="emergency()">
+    🆘 DIAL FOR HELP
+  </button>
+
+</div>
+
+<div class="search">
+  🔍 आपको किस चीज़ की जरूरत है?
+</div>
+
+<h3>हमारी सेवाएँ</h3>
+
+<div class="services">
+
+  <div class="service" onclick="service('Plumber')">
+    <span class="icon">🔧</span>
+    Plumber
+  </div>
+
+  <div class="service" onclick="service('Electrician')">
+    <span class="icon">⚡</span>
+    Electrician
+  </div>
+
+  <div class="service" onclick="service('Mechanic')">
+    <span class="icon">🚗</span>
+    Mechanic
+  </div>
+
+  <div class="service" onclick="service('Mistri')">
+    <span class="icon">🧱</span>
+    Mistri
+  </div>
+
+  <div class="service" onclick="service('Helper')">
+    <span class="icon">👷</span>
+    Helper
+  </div>
+
+  <div class="service" onclick="service('Carpenter')">
+    <span class="icon">🪚</span>
+    Carpenter
+  </div>
+
+  <div class="service" onclick="service('AC / Fridge')">
+    <span class="icon">❄️</span>
+    AC / Fridge
+  </div>
+
+  <div class="service" onclick="service('Driver')">
+    <span class="icon">🚚</span>
+    Driver
+  </div>
+
+  <div class="service" onclick="service('Cleaning')">
+    <span class="icon">🧹</span>
+    Cleaning
+  </div>
+
+</div>
+
+<button class="more" onclick="moreServices()">
+  ＋ More Services
+</button>
+
+<div class="info">
+  <b>👥 1000+ Verified Helpers</b>
+  <br><br>
+
+  ⚡ Fast & Reliable Service
+  <br><br>
+
+  🆘 Emergency Support
+  <br><br>
+
+  🛡️ Safe & Secure
+</div>
+
+</main>
+
+<div class="bottom">
+
+<button class="nav active">
+  <span>⌂</span>
+  Home
+</button>
+
+<button class="nav" onclick="bookings()">
+  <span>▣</span>
+  Bookings
+</button>
+
+<button class="nav" onclick="chat()">
+  <span>💬</span>
+  Chat
+</button>
+
+<button class="nav" onclick="profile()">
+  <span>◉</span>
+  Profile
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function emergency(){
+
+  alert(
+    "🆘 Emergency Help\n\n" +
+    "Emergency service selected.\n\n" +
+    "अगले version में यहाँ location permission, nearby helpers और emergency response जोड़ा जाएगा।"
+  );
+
+}
+
+function service(name){
+
+  alert(
+    "🔧 " + name + "\n\n" +
+    "इस service के nearby workers जल्द दिखाए जाएंगे।"
+  );
+
+}
+
+function moreServices(){
+
+  alert(
+    "More Services\n\n" +
+    "Driver\n" +
+    "Painter\n" +
+    "AC Repair\n" +
+    "Fridge Repair\n" +
+    "RO Repair\n" +
+    "Computer Repair\n" +
+    "Mobile Repair\n" +
+    "Cleaning"
+  );
+
+}
+
+function bookings(){
+
+  alert("📋 आपकी Bookings यहाँ दिखाई देंगी।");
+
+}
+
+function chat(){
+
+  alert("💬 Customer और Worker की Chat यहाँ होगी।");
+
+}
+
+function profile(){
+
+  alert("👤 आपका Profile यहाँ खुलेगा।");
+
+}
+
+</script>
+
+</body>
+    </html>
