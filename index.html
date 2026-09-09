@@ -545,13 +545,12 @@ service.onclick=function(){
 
 let selected=this.dataset.service;
 
-workerTitle.innerText=
+workerTitle.innerText =
 "🔧 Nearby "+selected;
-getRealWorkers(selected);
-
 
 workerModal.style.display="flex";
 
+getRealWorkers(selected);
 
 /* REQUEST */
 
