@@ -852,79 +852,98 @@ document.addEventListener("DOMContentLoaded", function(){
   };
 
 
-  /* SEND OTP */
-
   sendOtpBtn.onclick = async function(){
 
-    const name =
-      document.getElementById("workerName").value.trim();
+  const name = document.getElementById("workerName").value.trim();
+  const phone = document.getElementById("workerPhone").value.trim();
+  const service = document.getElementById("workerService").value;
+  const area = document.getElementById("workerArea").value.trim();
+  const experience = document.getElementById("workerExperience").value.trim();
 
-    const phone =
-      document.getElementById("workerPhone").value.trim();
+  if(!name || !phone || !service || !area || !experience){
+    statusBox.innerText = "⚠️ सभी जरूरी जानकारी भरें";
+    return;
+  }
 
-    const service =
-      document.getElementById("workerService").value;
+  if(!/^[0-9]{10}$/.test(phone)){
+    statusBox.innerText = "⚠️ सही 10 digit मोबाइल नंबर डालें";
+    return;
+  }
 
-    const area =
-      document.getElementById("workerArea").value.trim();
+  try{
 
-    const experience =
-      document.getElementById("workerExperience").value.trim();
+    statusBox.innerText = "⏳ Worker Registration हो रही है...";
 
+    // Free Anonymous Login
+    const result = await firebase.auth().signInAnonymously();
+    const user = result.user;
 
-    if(!name || !phone || !service || !area){
+    const workerData = {
 
-      statusBox.innerText =
-        "⚠️ सभी जरूरी जानकारी भरें।";
+      uid: user.uid,
 
-      return;
+      name: name,
+
+      phone: phone,
+
+      service: service,
+
+      area: area,
+
+      experience: Number(experience),
+
+      online: false,
+
+      verified: false,
+
+      approved: false,
+
+      status: "pending",
+
+      PhoneVerified: false,
+
+      AuthType: "anonymous",
+
+      Rating: 0,
+
+      createdAt:
+        firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    await firebase.firestore()
+      .collection("workers")
+      .doc(user.uid)
+      .set(workerData);
+
+    statusBox.innerText =
+      "✅ Worker Registration सफल!\n\n" +
+      "आपकी profile Admin approval के लिए भेज दी गई है।";
+
+    alert(
+      "✅ Worker Registration सफल!\n\n" +
+      "आपकी profile Firebase में save हो गई है।"
+    );
+
+    // OTP वाले हिस्से को छिपाएँ
+    const otpBox = document.getElementById("workerOtp");
+    if(otpBox){
+      otpBox.style.display = "none";
     }
 
-
-    if(!/^[0-9]{10}$/.test(phone)){
-
-      statusBox.innerText =
-        "⚠️ सही 10 digit मोबाइल नंबर डालें।";
-
-      return;
+    if(typeof verifyOtpBtn !== "undefined"){
+      verifyOtpBtn.style.display = "none";
     }
 
+  }catch(error){
 
-    try{
+    console.error(error);
 
-      statusBox.innerText =
-        "📱 OTP भेजा जा रहा है...";
+    statusBox.innerText =
+      "❌ Registration में समस्या हुई";
 
-
-      confirmationResult =
-        await firebase.auth().signInWithPhoneNumber(
-          "+91" + phone,
-          recaptchaVerifier
-        );
-
-
-      document.getElementById("workerOtpBox").style.display =
-        "block";
-
-
-      statusBox.innerText =
-        "✅ OTP आपके मोबाइल पर भेज दिया गया।";
-
-    }
-
-    catch(error){
-
-      console.error(error);
-
-      statusBox.innerText =
-        "❌ OTP भेजने में समस्या हुई।";
-
-      alert(error.message);
-
-    }
-
-  };
-
+    alert("❌ " + error.message);
+  }
+};
 
   /* VERIFY OTP + SAVE WORKER */
 
