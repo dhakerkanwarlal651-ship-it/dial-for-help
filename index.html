@@ -2,435 +2,238 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dial For Help</title>
+<meta name="theme-color" content="#075E54">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-font-family:Arial,sans-serif;
-background:#eef3f8;
-color:#172b4d
-}
-
-.app{
-max-width:430px;
-min-height:100vh;
-margin:auto;
-background:#f8fbff
-}
-
-header{
-background:#07356f;
-color:white;
-padding:18px
-}
-
-.logo{
-font-size:26px;
-font-weight:bold
-}
-
-.logo span{color:#ffd21c}
-
-.location{
-margin-top:8px;
-font-size:13px
-}
-
-main{
-padding:15px 15px 90px
-}
-
-.hero{
-background:linear-gradient(135deg,#07356f,#0875df);
-color:white;
-padding:20px;
-border-radius:20px;
-margin-bottom:15px
-}
-
-.hero h2{
-font-size:24px;
-margin-bottom:8px
-}
-
-.hero p{
-margin-bottom:15px
-}
-
-button{
-cursor:pointer
-}
-
-.sos{
-width:100%;
-border:0;
-background:#ef3340;
-color:white;
-padding:17px;
-border-radius:15px;
-font-size:18px;
-font-weight:bold
-}
-
-.search{
-background:white;
-border:1px solid #dce5ef;
-padding:14px;
-border-radius:13px;
-margin-bottom:18px
-}
-
-.search input{
-width:100%;
-border:0;
-outline:0;
-font-size:16px
-}
-
-h3{
-font-size:22px;
-margin-bottom:12px
-}
-
-.services{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px
-}
-
-.service{
-background:white;
-border:1px solid #e0e7ef;
-border-radius:15px;
-padding:14px 5px;
-text-align:center;
-font-weight:bold;
-box-shadow:0 2px 7px #dfe6ee
-}
-
-.icon{
-display:block;
-font-size:28px;
-margin-bottom:7px
-}
-
-.more{
-width:100%;
-margin-top:12px;
-padding:13px;
-border:0;
-border-radius:13px;
-background:#e5f0ff;
-color:#075bb1;
-font-weight:bold;
-font-size:15px
-}
-
-.info{
-background:white;
-border-radius:16px;
-padding:15px;
-margin-top:15px;
-line-height:1.6;
-border:1px solid #e0e7ef
-}
-
-.bottom{
-position:fixed;
-bottom:0;
-left:50%;
-transform:translateX(-50%);
-width:100%;
-max-width:430px;
-background:white;
-border-top:1px solid #ddd;
-display:flex;
-justify-content:space-around;
-padding:9px;
-z-index:5
-}
-
-.nav{
-border:0;
-background:white;
-color:#687991;
-font-size:11px
-}
-
-.nav span{
-display:block;
-font-size:21px;
-margin-bottom:3px
-}
-
-.active{
-color:#0875df
-}
-
-/* MODAL */
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-z-index:20;
-align-items:flex-end;
-justify-content:center
-}
-
-.box{
-width:100%;
-max-width:430px;
-background:white;
-border-radius:25px 25px 0 0;
-padding:22px;
-max-height:85vh;
-overflow:auto
-}
-
-.box h2{
-margin-bottom:10px
-}
-
-.box p{
-color:#52627a;
-margin-bottom:15px;
-white-space:pre-line
-}
-
-.btn{
-width:100%;
-padding:14px;
-border:0;
-border-radius:12px;
-margin-top:8px;
-font-size:16px;
-font-weight:bold
-}
-
-.red{
-background:#ef3340;
-color:white
-}
-
-.blue{
-background:#0875df;
-color:white
-}
-
-.gray{
-background:#e8eef5;
-color:#173456
-}
-
-/* WORKER CARD */
-
-.worker{
-background:#f5f9ff;
-border:1px solid #dce7f2;
-border-radius:15px;
-padding:14px;
-margin:10px 0
-}
-
-.worker-top{
-display:flex;
-align-items:center;
-gap:12px
-}
-
-.worker-photo{
-width:55px;
-height:55px;
-border-radius:50%;
-background:#dcecff;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px
-}
-
-.worker h3{
-font-size:17px;
-margin:0 0 4px
-}
-
-.rating{
-color:#f39c12;
-font-size:14px
-}
-
-.distance{
-font-size:13px;
-color:#687991;
-margin-top:5px
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7f8;color:#17202a}
+button,input,select,textarea{font:inherit}
+button{border:0;cursor:pointer}
+.top{background:linear-gradient(135deg,#075E54,#128C7E);color:white;padding:18px 16px 22px;position:sticky;top:0;z-index:5}
+.top h1{margin:0;font-size:26px}
+.top p{margin:5px 0 0;opacity:.9}
+.container{max-width:760px;margin:auto;padding:14px 14px 90px}
+.card{background:white;border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 3px 14px #00000012}
+.sos{width:100%;background:#d90429;color:white;border-radius:18px;padding:18px;font-size:22px;font-weight:700}
+.section-title{font-size:20px;font-weight:700;margin:20px 4px 10px}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.service{background:white;border-radius:16px;padding:18px 8px;text-align:center;box-shadow:0 2px 10px #00000012;font-weight:700}
+.service span{display:block;font-size:34px;margin-bottom:6px}
+.btn{background:#075E54;color:white;border-radius:12px;padding:13px 16px;font-weight:700}
+.btn.secondary{background:#e8f5f3;color:#075E54}
+.btn.gray{background:#e9ecef;color:#333}
+.full{width:100%}
+input,select,textarea{width:100%;padding:13px;border:1px solid #d5dadd;border-radius:12px;margin:6px 0 10px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#128C7E}
+label{font-weight:700;font-size:14px}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:20;align-items:flex-end;justify-content:center}
+.modal-box{background:#fff;width:100%;max-width:760px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:20px}
+.close{float:right;background:#eee;border-radius:50%;width:36px;height:36px}
+.worker{border:1px solid #e2e6e8;border-radius:16px;padding:14px;margin:10px 0}
+.worker-head{display:flex;justify-content:space-between;gap:10px}
+.badge{display:inline-block;padding:5px 9px;border-radius:20px;background:#e9f7ef;color:#168344;font-size:12px;font-weight:700}
+.small{font-size:13px;color:#667085}
+.status{white-space:pre-line;background:#f7f8f9;border-radius:12px;padding:12px;margin:10px 0}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:8px;z-index:10}
+.nav button{background:none;color:#555;padding:6px 10px}
+.nav button.active{color:#075E54;font-weight:700}
+.hidden{display:none!important}
+.notice{padding:10px;border-radius:10px;background:#fff8df;color:#7a5b00;font-size:13px;margin:10px 0}
+.empty{text-align:center;color:#777;padding:20px}
 </style>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
 
-<div class="app">
-
-<header>
-<div class="logo">Dial For <span>Help</span></div>
-<div class="location" id="locationText">
-📍 Location उपलब्ध नहीं है
-</div>
+<header class="top">
+<h1>📞 Dial For Help</h1>
+<p>जब भी मदद चाहिए, बस Dial For Help.</p>
 </header>
 
-<main>
+<main class="container">
 
-<div class="hero">
-<h2>हर काम के लिए एक ही App</h2>
-<p>जब भी मदद चाहिए, बस Dial For Help.</p>
+<section id="homePage">
 
-<button class="sos" id="sosBtn">
-🆘 DIAL FOR HELP
-</button>
-</div>
-
-<div class="search">
-🔍
-<input id="search" type="text"
-placeholder="आपको किस चीज़ की जरूरत है?">
-</div>
-
-<h3>हमारी सेवाएँ</h3>
-
-<div class="services">
-
-<div class="service" data-name="plumber" data-service="Plumber">
-<span class="icon">🔧</span>
-Plumber
-</div>
-
-<div class="service" data-name="electrician" data-service="Electrician">
-<span class="icon">⚡</span>
-Electrician
-</div>
-
-<div class="service" data-name="mechanic" data-service="Mechanic">
-<span class="icon">🚗</span>
-Mechanic
-</div>
-
-<div class="service" data-name="mistri" data-service="Mistri">
-<span class="icon">🧱</span>
-Mistri
-</div>
-
-<div class="service" data-name="helper" data-service="Helper">
-<span class="icon">👷</span>
-Helper
-</div>
-
-<div class="service" data-name="carpenter" data-service="Carpenter">
-<span class="icon">🪚</span>
-Carpenter
-</div>
-
-<div class="service" data-name="ac" data-service="AC / Fridge">
-<span class="icon">❄️</span>
-AC / Fridge
-</div>
-
-<div class="service" data-name="driver" data-service="Driver">
-<span class="icon">🚚</span>
-Driver
-</div>
-
-<div class="service" data-name="cleaning" data-service="Cleaning">
-<span class="icon">🧹</span>
-Cleaning
-</div>
-
-</div>
-
-<button class="more" id="moreBtn">
-＋ More Services
+<button class="sos" onclick="sendSOS()">
+🚨 EMERGENCY / SOS
 </button>
 
-<div class="info">
-<b>👥 1000+ Verified Helpers</b>
-<br>
-⚡ Fast & Reliable Service
-<br>
-🆘 Emergency Support
-<br>
-🛡️ Safe & Secure
+<div class="card">
+<b>आपको किसकी मदद चाहिए?</b>
+<p class="small">
+नीचे service चुनें। Nearby approved & online workers दिखेंगे।
+</p>
 </div>
+
+<div class="section-title">Services</div>
+
+<div class="services" id="services"></div>
+
+<div class="card">
+<button class="btn secondary full"
+onclick="openWorkerRegister()">
+👷 Worker Registration
+</button>
+
+<div class="small" style="margin-top:8px">
+Free testing mode: अभी SMS OTP की जगह Anonymous Login इस्तेमाल हो रहा है।
+</div>
+</div>
+
+</section>
+
+<section id="bookingsPage" class="hidden">
+
+<div class="section-title">📋 My Requests</div>
+
+<div id="myRequests">
+<div class="empty">अभी कोई request नहीं है।</div>
+</div>
+
+</section>
+
+<section id="profilePage" class="hidden">
+
+<div class="section-title">👤 Profile</div>
+
+<div class="card">
+<div id="loginStatus">Connecting...</div>
+
+<button class="btn full"
+onclick="openWorkerRegister()"
+style="margin-top:10px">
+👷 Worker Registration
+</button>
+
+</div>
+</section>
 
 </main>
 
-<div class="bottom">
+<nav class="nav">
 
-<button class="nav active" id="homeBtn">
-<span>⌂</span>Home
+<button class="active"
+onclick="showPage('homePage',this)">
+🏠<br>Home
 </button>
 
-<button class="nav" id="bookingBtn">
-<span>▣</span>Bookings
+<button onclick="showPage('bookingsPage',this);loadMyRequests()">
+📋<br>Bookings
 </button>
 
-<button class="nav" id="chatBtn">
-<span>💬</span>Chat
+<button onclick="openWorkerRegister()">
+👷<br>Worker
 </button>
 
-<button class="nav" id="profileBtn">
-<span>◉</span>Profile
+<button onclick="showPage('profilePage',this)">
+👤<br>Profile
 </button>
 
-</div>
-
-</div>
+</nav>
 
 
-<!-- SOS MODAL -->
-
-<div class="modal" id="sosModal">
-
-<div class="box">
-
-<h2>🆘 Emergency Help</h2>
-
-<p id="sosText">
-Emergency सहायता के लिए आपकी location चाहिए।
-</p>
-
-<button class="btn red" id="locationBtn">
-📍 Share My Location
-</button>
-
-<button class="btn gray" id="closeSos">
-Cancel
-</button>
-
-</div>
-</div>
-
-
-<!-- WORKERS MODAL -->
+<!-- Nearby Workers -->
 
 <div class="modal" id="workerModal">
 
-<div class="box">
+<div class="modal-box">
 
-<h2 id="workerTitle">
-🔧 Nearby Workers
-</h2>
+<button class="close"
+onclick="closeModal('workerModal')">
+✕
+</button>
+
+<h2 id="workerTitle">Nearby Workers</h2>
+
+<div id="workerList">
+<div class="empty">
+Workers खोजे जा रहे हैं...
+</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- Worker Registration -->
+
+<div class="modal" id="workerRegisterModal">
+
+<div class="modal-box">
+
+<button class="close"
+onclick="closeModal('workerRegisterModal')">
+✕
+</button>
+
+<h2>👷 Worker Registration</h2>
 
 <p>
-आपके आसपास उपलब्ध workers:
+अपनी जानकारी भरकर Worker के रूप में Register करें।
 </p>
 
-<div id="workerList"></div>
+<label>पूरा नाम</label>
 
-<button class="btn gray" id="closeWorkers">
+<input id="workerName"
+placeholder="जैसे Arjun">
+
+
+<label>मोबाइल नंबर</label>
+
+<input id="workerPhone"
+inputmode="numeric"
+maxlength="10"
+placeholder="10 digit mobile number">
+
+
+<label>Service</label>
+
+<select id="workerService"></select>
+
+
+<label>Area / City</label>
+
+<input id="workerArea"
+placeholder="जैसे Singoli Madhya Pradesh">
+
+
+<label>काम का अनुभव (वर्ष)</label>
+
+<input id="workerExperience"
+type="number"
+min="0"
+placeholder="जैसे 3">
+
+
+<div class="notice">
+
+⚠️ Free testing mode में मोबाइल नंबर save होगा,
+लेकिन SMS से verify नहीं होगा।
+
+Production में real phone verification जोड़ना जरूरी है।
+
+</div>
+
+
+<button id="sendOtpBtn"
+class="btn full">
+👷 Register Worker
+</button>
+
+
+<div id="statusBox" class="status">
+जानकारी भरकर Register Worker दबाएँ।
+</div>
+
+
+<button class="btn gray full"
+onclick="closeModal('workerRegisterModal')">
 Close
 </button>
 
@@ -438,622 +241,19 @@ Close
 </div>
 
 
-<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<!-- Booking -->
 
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDfevYooOVoMAZ_0Ad_C0HBB3PpycpN-HY",
-  authDomain: "dail-for-help-a293d.firebaseapp.com",
-  projectId: "dail-for-help-a293d",
-  storageBucket: "dail-for-help-a293d.firebasestorage.app",
-  messagingSenderId: "978623429914",
-  appId: "1:978623429914:web:fae876ed33e239e0a480a3"
-};
+<div class="modal" id="bookingModal">
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+<div class="modal-box">
 
-const db = firebase.firestore();
-const auth = firebase.auth();
-
-console.log("Firebase Connected Successfully");
-</script>
-
-  <script>
-
-document.addEventListener("DOMContentLoaded", function(){
-
-/* SOS */
-
-const sosBtn=document.getElementById("sosBtn");
-const sosModal=document.getElementById("sosModal");
-const closeSos=document.getElementById("closeSos");
-const locationBtn=document.getElementById("locationBtn");
-const sosText=document.getElementById("sosText");
-const locationText=document.getElementById("locationText");
-
-sosBtn.onclick=function(){
-sosModal.style.display="flex";
-};
-
-closeSos.onclick=function(){
-sosModal.style.display="none";
-};
-
-
-/* LOCATION */
-
-locationBtn.onclick=function(){
-
-if(!navigator.geolocation){
-
-sosText.innerText=
-"❌ इस browser में location उपलब्ध नहीं है।";
-
-return;
-}
-
-sosText.innerText=
-"📍 Location प्राप्त की जा रही है...";
-
-navigator.geolocation.getCurrentPosition(
-
-function(position){
-
-let lat=position.coords.latitude;
-let lon=position.coords.longitude;
-
-locationText.innerText="📍 Location उपलब्ध है";
-
-sosText.innerText=
-"✅ Location मिल गई!\n\n"+
-"Latitude: "+lat.toFixed(5)+
-"\nLongitude: "+lon.toFixed(5)+
-"\n\nअब emergency request तैयार है।";
-
-},
-
-function(){
-
-sosText.innerText=
-"❌ Location permission नहीं मिली।\n\n"+
-"Browser में Location Allow करें।";
-
-},
-
-{
-enableHighAccuracy:true,
-timeout:10000,
-maximumAge:0
-}
-
-);
-
-};
-
-
-/* WORKERS */
-
-const workerModal=document.getElementById("workerModal");
-const workerList=document.getElementById("workerList");
-const workerTitle=document.getElementById("workerTitle");
-
-
-
-
-document.querySelectorAll(".service").forEach(function(service){
-
-service.onclick=function(){
-
-let selected=this.dataset.service;
-
-workerTitle.innerText =
-"🔧 Nearby "+selected;
-
-workerModal.style.display="flex";
-
-getRealWorkers(selected);
-
-/* REQUEST */
-
-document.querySelectorAll(".requestBtn").forEach(function(btn){
-
-btn.onclick=function(){
-
-alert(
-"✅ Service Request भेज दी गई!\n\n"+
-"Worker आपकी request स्वीकार करेगा।"
-);
-
-};
-
-});
-
-};
-
-});
-
-
-/* MORE SERVICES */
-
-document.getElementById("moreBtn").onclick=function(){
-
-alert(
-"＋ More Services\n\n"+
-"🚕 Taxi\n"+
-"🎨 Painter\n"+
-"💧 RO Repair\n"+
-"📱 Mobile Repair\n"+
-"💻 Computer Repair\n"+
-"❄️ AC Repair\n"+
-"🧊 Fridge Repair\n"+
-"🏠 Home Cleaning"
-);
-
-};
-
-
-/* SEARCH */
-
-document.getElementById("search").oninput=function(){
-
-let text=this.value.toLowerCase();
-
-document.querySelectorAll(".service").forEach(function(service){
-
-let name=service.dataset.name;
-
-service.style.display=
-name.includes(text) ? "block" : "none";
-
-});
-
-};
-
-
-/* CLOSE WORKERS */
-
-document.getElementById("closeWorkers").onclick=function(){
-
-workerModal.style.display="none";
-
-};
-
-
-/* NAVIGATION */
-
-document.getElementById("homeBtn").onclick=function(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-};
-
-document.getElementById("bookingBtn").onclick=function(){
-
-alert(
-"📋 My Bookings\n\n"+
-"अभी कोई booking नहीं है।"
-);
-
-};
-
-document.getElementById("chatBtn").onclick=function(){
-
-alert(
-"💬 Chat\n\n"+
-"Worker से chat यहाँ होगी।"
-);
-
-};
-
-document.getElementById("profileBtn").onclick=function(){
-
-alert(
-"👤 Profile\n\n"+
-"अगले चरण में Login और Profile system जोड़ेंगे।"
-);
-
-};
-
-});
-
-</script>
-
-  <!-- ================= WORKER REGISTRATION ================= -->
-
-<div id="workerRegisterModal" style="
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-z-index:9999;
-align-items:center;
-justify-content:center;
-padding:20px;
-">
-
-  <div style="
-  background:white;
-  width:100%;
-  max-width:430px;
-  border-radius:22px;
-  padding:24px;
-  max-height:90vh;
-  overflow:auto;
-  ">
-
-    <h2 style="color:#07356f;margin-top:0;">
-      👷 Worker Registration
-    </h2>
-
-    <p>अपनी जानकारी भरकर Worker के रूप में Register करें।</p>
-
-    <input id="workerName"
-      type="text"
-      placeholder="पूरा नाम"
-      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
-
-    <input id="workerPhone"
-      type="tel"
-      placeholder="मोबाइल नंबर"
-      maxlength="10"
-      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
-
-    <select id="workerService"
-      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
-
-      <option value="">अपनी Service चुनें</option>
-      <option value="Plumber">🔧 Plumber</option>
-      <option value="Electrician">⚡ Electrician</option>
-      <option value="Mechanic">🚗 Mechanic</option>
-      <option value="Mistri">🧱 Mistri</option>
-      <option value="Helper">👷 Helper</option>
-      <option value="Carpenter">🪚 Carpenter</option>
-      <option value="AC / Fridge">❄️ AC / Fridge</option>
-      <option value="Driver">🚚 Driver</option>
-      <option value="Cleaning">🧹 Cleaning</option>
-
-    </select>
-
-    <input id="workerArea"
-      type="text"
-      placeholder="आप किस Area/City में काम करते हैं?"
-      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
-
-    <input id="workerExperience"
-      type="number"
-      placeholder="काम का अनुभव (वर्ष)"
-      min="0"
-      style="width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:10px;">
-
-    <div id="workerRecaptcha" style="margin:12px 0;"></div>
-
-    <button id="workerSendOtp"
-      style="
-      width:100%;
-      padding:15px;
-      border:0;
-      border-radius:12px;
-      background:#07356f;
-      color:white;
-      font-size:17px;
-      font-weight:bold;
-      ">
-      📱 Send OTP
-    </button>
-
-    <div id="workerOtpBox" style="display:none;margin-top:12px;">
-
-      <input id="workerOtp"
-        type="number"
-        placeholder="6 digit OTP"
-        maxlength="6"
-        style="width:100%;padding:14px;border:1px solid #ccc;border-radius:10px;">
-
-      <button id="workerVerifyOtp"
-        style="
-        width:100%;
-        padding:15px;
-        margin-top:10px;
-        border:0;
-        border-radius:12px;
-        background:#16a34a;
-        color:white;
-        font-size:17px;
-        font-weight:bold;
-        ">
-        ✅ Verify & Register
-      </button>
-
-    </div>
-
-    <p id="workerRegisterStatus"
-       style="font-weight:bold;text-align:center;"></p>
-
-    <button onclick="document.getElementById('workerRegisterModal').style.display='none'"
-      style="
-      width:100%;
-      padding:13px;
-      border:0;
-      border-radius:12px;
-      background:#e5edf7;
-      color:#07356f;
-      font-size:16px;
-      ">
-      Close
-    </button>
-
-  </div>
-</div>
-
-
-<!-- Worker Registration Button -->
-
-<button id="openWorkerRegister"
-  style="
-  display:block;
-  width:calc(100% - 40px);
-  max-width:430px;
-  margin:20px auto;
-  padding:16px;
-  border:0;
-  border-radius:14px;
-  background:#07356f;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  ">
-  👷 Worker बनें / Register करें
+<button class="close"
+onclick="closeModal('bookingModal')">
+✕
 </button>
 
+<h2>📋 Service Request</h2>
 
-<script>
+<div id="bookingWorker"></div>
 
-document.addEventListener("DOMContentLoaded", function(){
-
-  const openBtn = document.getElementById("openWorkerRegister");
-  const modal = document.getElementById("workerRegisterModal");
-
-  const sendOtpBtn = document.getElementById("workerSendOtp");
-  const verifyOtpBtn = document.getElementById("workerVerifyOtp");
-
-  const statusBox = document.getElementById("workerRegisterStatus");
-
-  let confirmationResult = null;
-  let recaptchaVerifier = null;
-
-
-  /* OPEN REGISTRATION */
-
-  openBtn.onclick = function(){
-
-    modal.style.display = "flex";
-
-    if(!recaptchaVerifier){
-
-      recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-        "workerRecaptcha",
-        {
-          size:"normal"
-        }
-      );
-
-      recaptchaVerifier.render();
-    }
-
-  };
-
-
-  sendOtpBtn.onclick = async function(){
-
-  const name = document.getElementById("workerName").value.trim();
-  const phone = document.getElementById("workerPhone").value.trim();
-  const service = document.getElementById("workerService").value;
-  const area = document.getElementById("workerArea").value.trim();
-  const experience = document.getElementById("workerExperience").value.trim();
-
-  if(!name || !phone || !service || !area || !experience){
-    statusBox.innerText = "⚠️ सभी जरूरी जानकारी भरें";
-    return;
-  }
-
-  if(!/^[0-9]{10}$/.test(phone)){
-    statusBox.innerText = "⚠️ सही 10 digit मोबाइल नंबर डालें";
-    return;
-  }
-
-  try{
-
-    statusBox.innerText = "⏳ Worker Registration हो रही है...";
-
-    // Free Anonymous Login
-    const result = await firebase.auth().signInAnonymously();
-    const user = result.user;
-
-    const workerData = {
-
-      uid: user.uid,
-
-      name: name,
-
-      phone: phone,
-
-      service: service,
-
-      area: area,
-
-      experience: Number(experience),
-
-      online: false,
-
-      verified: false,
-
-      approved: false,
-
-      status: "pending",
-
-      PhoneVerified: false,
-
-      AuthType: "anonymous",
-
-      Rating: 0,
-
-      createdAt:
-        firebase.firestore.FieldValue.serverTimestamp()
-    };
-
-    await firebase.firestore()
-      .collection("workers")
-      .doc(user.uid)
-      .set(workerData);
-
-    statusBox.innerText =
-      "✅ Worker Registration सफल!\n\n" +
-      "आपकी profile Admin approval के लिए भेज दी गई है।";
-
-    alert(
-      "✅ Worker Registration सफल!\n\n" +
-      "आपकी profile Firebase में save हो गई है।"
-    );
-
-    // OTP वाले हिस्से को छिपाएँ
-    const otpBox = document.getElementById("workerOtp");
-    if(otpBox){
-      otpBox.style.display = "none";
-    }
-
-    if(typeof verifyOtpBtn !== "undefined"){
-      verifyOtpBtn.style.display = "none";
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    statusBox.innerText =
-      "❌ Registration में समस्या हुई";
-
-    alert("❌ " + error.message);
-  }
-};
-
-  /* VERIFY OTP + SAVE WORKER */
-
-  verifyOtpBtn.onclick = async function(){
-
-    const otp =
-      document.getElementById("workerOtp").value.trim();
-
-    if(!confirmationResult){
-
-      statusBox.innerText =
-        "⚠️ पहले Send OTP दबाएँ।";
-
-      return;
-    }
-
-
-    if(!/^[0-9]{6}$/.test(otp)){
-
-      statusBox.innerText =
-        "⚠️ 6 digit OTP डालें।";
-
-      return;
-    }
-
-
-    try{
-
-      statusBox.innerText =
-        "🔐 OTP verify हो रहा है...";
-
-
-      const result =
-        await confirmationResult.confirm(otp);
-
-
-      const user = result.user;
-
-
-      const workerData = {
-
-        uid: user.uid,
-
-        name:
-          document.getElementById("workerName").value.trim(),
-
-        phone:
-          user.phoneNumber,
-
-        service:
-          document.getElementById("workerService").value,
-
-        area:
-          document.getElementById("workerArea").value.trim(),
-
-        experience:
-          Number(
-            document.getElementById("workerExperience").value || 0
-          ),
-
-        online: false,
-
-        verified: false,
-
-        approved: false,
-
-        status: "pending",
-
-        createdAt:
-          firebase.firestore.FieldValue.serverTimestamp()
-
-      };
-
-
-      await firebase.firestore()
-        .collection("workers")
-        .doc(user.uid)
-        .set(workerData);
-
-
-      statusBox.innerText =
-        "✅ Registration सफल!\nAdmin verification के बाद आप available होंगे।";
-
-
-      alert(
-        "✅ Worker Registration सफल!\n\n" +
-        "आपकी profile Firebase में save हो गई है।\n" +
-        "Admin approval के बाद ही आप customers को दिखाई देंगे।"
-      );
-
-
-    }
-
-    catch(error){
-
-      console.error(error);
-
-      statusBox.innerText =
-        "❌ OTP verification में समस्या हुई।";
-
-      alert(error.message);
-
-    }
-
-  };
-
-});
-
-</script>
-
-<!-- ================= END WORKER REGISTRATION ================= -->
-</body>
-</html>
+<label>समस्या / काम
